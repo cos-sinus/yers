@@ -15,7 +15,7 @@ public sealed class OneDemensionMassive : Massive
 
     public override void CreateMassive()
     {
-        massive = new int[int.Parse(Console.ReadLine())];
+        massive = new int[int.Parse(Console.ReadLine("Введите длинну массива:"))];
         var random = new Random();
         for (int i = 0; i < massive.Length; i++)
         {
@@ -46,7 +46,7 @@ public sealed class TwoDemensionMassive : Massive
 
     public override void CreateMassive()
     {
-        string[] a = Console.ReadLine().Split();
+        string[] a = Console.ReadLine("Введите кол-во столбцов и срок в массиве:").Split();
         massive = new int[int.Parse(a[0]), int.Parse(a[1])];
         var random = new Random();
         for (int i = 0; i < massive.GetLength(0); i++)
@@ -92,11 +92,11 @@ public sealed class JaggedMassive : Massive
 
     public override void CreateMassive()
     {
-        massive = new int[int.Parse(Console.ReadLine())][];
+        massive = new int[int.Parse(Console.ReadLine("Введите кол-во строк в массиве:"))][];
         var random = new Random();
         for (int i = 0; i < massive.GetLength(0); i++)
         {
-            massive[i] = new int[int.Parse(Console.ReadLine())];
+            massive[i] = new int[int.Parse(Console.ReadLine("Введите строку:"))];
             for (int j = 0; j < massive[i].Length; j++)
             {
                 massive[i][j] = random.Next(-200, 200);
