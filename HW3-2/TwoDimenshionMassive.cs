@@ -10,6 +10,26 @@ namespace HW3_2
     {
         private int[,] massive;
 
+        public TwoDemensionMassive(int Len1, int Len2)
+        {
+            CreateMassive();
+        }
+
+        public void CreateMassive(int Len1, int Len2)
+        {
+            Console.WriteLine("Введите кол-во столбцов и срок в массиве:");
+            string[] a = Console.ReadLine().Split();
+            massive = new int[Len1, Len2];
+            var random = new Random();
+            for (int i = 0; i < massive.GetLength(0); i++)
+            {
+                for (int j = 0; j < massive.GetLength(1); j++)
+                {
+                    massive[i, j] = random.Next(-200, 200);
+                }
+            }
+        }
+
         public override void CreateMassive()
         {
             Console.WriteLine("Введите кол-во столбцов и срок в массиве:");
@@ -35,7 +55,7 @@ namespace HW3_2
                     count += massive[i, j];
                 }
             }
-            Console.WriteLine("Average" + count / massive.Length);
+            Console.WriteLine("Average: " + count / massive.Length);
         }
 
         public override void Print()

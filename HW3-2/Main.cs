@@ -10,13 +10,12 @@ namespace HW3_2
     {
         static void Main()
         {
-            Massive[] mass = new Massive[3];
-            OneDemensionMassive o = new OneDemensionMassive();
-            TwoDemensionMassive t = new TwoDemensionMassive();
-            JaggedMassive s = new JaggedMassive();
-            mass[0] = o;
-            mass[1] = t;
-            mass[2] = s;
+            Massive[] mass = new Massive[]
+            {
+                new OneDemensionMassive(3),
+                new TwoDemensionMassive(2, 3),
+                new JaggedMassive(3)
+            };
             foreach (var m in mass)
             {
                 m.CreateMassive();

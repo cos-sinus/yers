@@ -9,7 +9,10 @@ namespace HW3_2
     public sealed class JaggedMassive : Massive
     {
         private int[][] massive;
-
+        public JaggedMassive()
+        {
+            CreateMassive();
+        }
         public override void CreateMassive()
         {
             Console.WriteLine("Введите кол-во строк в массиве:");
@@ -36,7 +39,7 @@ namespace HW3_2
                     count += massive[i][j];
                 }
             }
-            Console.WriteLine("Average" + count / massive.Length);
+            Console.WriteLine("Average: " + count / massive.Length);
         }
 
         public override void Print()

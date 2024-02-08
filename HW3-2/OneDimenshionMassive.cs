@@ -10,6 +10,21 @@ namespace HW3_2
     {
         private int[] massive;
 
+        public OneDemensionMassive(int Len)
+        {
+            CreateMassive();
+        }
+
+        public void CreateMassive(int Len)
+        {
+            Console.WriteLine("Введите длинну массива:");
+            massive = new int[Len];
+            var random = new Random();
+            for (int i = 0; i < massive.Length; i++)
+            {
+                massive[i] = random.Next(-200, 200);
+            }
+        }
         public override void CreateMassive()
         {
             Console.WriteLine("Введите длинну массива:");
@@ -28,7 +43,7 @@ namespace HW3_2
             {
                 count += massive[i];
             }
-            Console.WriteLine("Average" + count / massive.Length);
+            Console.WriteLine("Average: " + count / massive.Length);
         }
 
         public override void Print()
