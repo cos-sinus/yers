@@ -1,149 +1,127 @@
-using System;
+user System;
 
-public abstract class Massive
+public interface IPrinter
 {
-    public abstract void CreateMassive();
+    public Print();
+}
+
+public interface IArray : IPrinter
+{
+    void CreateRandomArray();
+
+    void CreateArray();
+
+    void AverageValue();
+
+    void Print();
+}
+
+public abstract class Array : IArray
+{
+    public abstract void CreateRandomArray();
+
+    public abstract void CreateArray();
 
     public abstract void AverageValue();
 
     public abstract void Print();
-}
 
-public sealed class OneDemensionMassive : Massive
-{
-    private int[] massive;
-
-    public override void CreateMassive()
+    public Array(bool choise)
     {
-        massive = new int[int.Parse(Console.ReadLine("Введите длинну массива:"))];
-        var random = new Random();
-        for (int i = 0; i < massive.Length; i++)
+        if (choise)
         {
-            massive[i] = random.Next(-200, 200);
+            CreateRandomArray();
         }
-    }
-
-    public override void AverageValue()
-    {
-        int count = 0;
-        for (int i = 0; i < massive.Length; ++i)
+        else
         {
-            count += massive[i];
-        }
-        Console.WriteLine(count / massive.Length);
-    }
-
-    public override void Print()
-    {
-        Console.WriteLine("Array:");
-        Console.WriteLine(string.Join(" ", massive));
-    }
-}
-
-public sealed class TwoDemensionMassive : Massive
-{
-    private int[,] massive;
-
-    public override void CreateMassive()
-    {
-        string[] a = Console.ReadLine("Введите кол-во столбцов и срок в массиве:").Split();
-        massive = new int[int.Parse(a[0]), int.Parse(a[1])];
-        var random = new Random();
-        for (int i = 0; i < massive.GetLength(0); i++)
-        {
-            for (int j = 0; j < massive.GetLength(1); j++)
-            {
-                massive[i, j] = random.Next(-200, 200);
-            }
-        }
-    }
-
-    public override void AverageValue()
-    {
-        int count = 0;
-        for (int i = 0; i < massive.GetLength(0); ++i)
-        {
-            for (int j = 0; j < massive.GetLenght(1); j++)
-            {
-                count += mass[i, j];
-            }
-        }
-        Console.WriteLine(count / mass.Length);
-    }
-
-    public override void Print()
-    {
-        Console.WriteLine("Array:");
-        for (int i = 0; i < massive.GetLength(0); i++)
-        {
-            Console.Write($"Row {i}: ");
-            for (int j = 0; j < massive.GetLength(1); j++)
-            {
-                Console.Write(massive[i, j] + " ");
-            }
-            Console.WriteLine();
+            CreateArray();
         }
     }
 }
 
-public sealed class JaggedMassive : Massive
+public interface IOneDemensionArray : IArray
 {
-    private int[][] massive;
+    void GetendArray();
+}
 
-    public override void CreateMassive()
-    {
-        massive = new int[int.Parse(Console.ReadLine("Введите кол-во строк в массиве:"))][];
-        var random = new Random();
-        for (int i = 0; i < massive.GetLength(0); i++)
+public sealed class OneDemensionArray : Array, IOneDemensionArray 
+{
+        private int[] massive;
+
+        public OneDemensionMassive(int Len)
         {
-            massive[i] = new int[int.Parse(Console.ReadLine("Введите строку:"))];
-            for (int j = 0; j < massive[i].Length; j++)
+            CreateMassive();
+        }
+
+        public void CreateMassive(int Len)
+        {
+            Console.WriteLine("Введите длинну массива:");
+            massive = new int[Len];
+            var random = new Random();
+            for (int i = 0; i < massive.Length; i++)
             {
-                massive[i][j] = random.Next(-200, 200);
+                massive[i] = random.Next(-200, 200);
             }
         }
-    }
 
-    public override void AverageValue()
-    {
-        int count = 0;
+        public override void CreateMassive()
+        {
+            Console.WriteLine("Введите длинну массива:");
+            massive = new int[int.Parse(Console.ReadLine())];
+            var random = new Random();
+            for (int i = 0; i < massive.Length; i++)
+            {
+                massive[i] = random.Next(-200, 200);
+            }
+        }
+
+        public override void AverageValue()
+        {
+            int count = 0;
+            for (int i = 0; i < massive.Length; ++i)
+            {
+                count += massive[i];
+            }
+            Console.WriteLine("Average: " + count / massive.Length);
+        }
+
+        public override void Print()
+        {
+            Console.WriteLine("Array:");
+            Console.WriteLine(string.Join(" ", massive));
+        }
+        
+        public void Getendmass()
+        {
+        int newmassLength = mass.Length;
         for (int i = 0; i < mass.Length; i++)
         {
-            for (int j = 0; j < mass[i].Length; j++)
+            for (int j = i; j < mass.Length; j++)
             {
-                count += mass[i][j];
+                if (mass[i] == mass[j] && i != j)
+                {
+                    newmassLength--;
+                    break;
+                }
             }
         }
-        Console.WriteLine(count / mass.Length);
-    }
-
-    public override void Print()
-    {
-        Console.WriteLine("Array:");
-        for (int i = 0; i < massive.Length; i++)
+        int[] newmass = new int[newmassLength];
+        for (int i = 0; i < newmass.Length; i++)
         {
-            Console.Write($"Row {i}: ");
-            Console.WriteLine(string.Join(" ", massive[i]));
+            newmass[i] = int.MinValue;
         }
-    }
-}
-
-class Program
-{
-    static void Main()
-    {
-        Massive[] mass = new Massive[3];
-        OneDemensionMassive o = new OneDemensionMassive();
-        TwoDemensionMassive t = new TwoDemensionMassive();
-        JaggedMassive s = new JaggedMassive();
-        m[0] = o;
-        m[1] = t;
-        m[2] = s;
-        foreach (var m in mass)
+        int counter = 0;
+        for (int i = 0; i < mass.Length; i++)
         {
-            m.CreateMassive();
-            m.Print();
-            m.AverageValue();
+            if (!Exist(mass[i], newmass))
+            {
+                newmass[counter] = mass[i];
+                counter++;
+            }
+        }
+        foreach (var elem in newmass)
+        {
+            Console.Write(elem + " ");
         }
     }
 }
