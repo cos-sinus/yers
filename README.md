@@ -1,11 +1,30 @@
-user System;
+using System;
+class Program
+{
+    static void Main()
+    {
+        BaseArray[] array = new BaseArray[]
+        {
+            new OneDemensionArray(3),
+            new TwoDemensionArray(2, 3),
+            new JaggedArray(3)
+        };
+
+        foreach (var a in array)
+        {
+            a.CreateRandomArray();
+            a.Print();
+            a.AverageValue();
+        }
+    }
+}
 
 public interface IPrinter
 {
-    public Print();
+    void Print();
 }
 
-public interface IArray : IPrinter
+public interface IBaseArray : IPrinter
 {
     void CreateRandomArray();
 
@@ -16,7 +35,7 @@ public interface IArray : IPrinter
     void Print();
 }
 
-public abstract class Array : IArray
+public abstract class BaseArray : IBaseArray
 {
     public abstract void CreateRandomArray();
 
@@ -26,7 +45,7 @@ public abstract class Array : IArray
 
     public abstract void Print();
 
-    public Array(bool choise)
+    /*public Array(bool choise)
     {
         if (choise)
         {
@@ -36,69 +55,69 @@ public abstract class Array : IArray
         {
             CreateArray();
         }
-    }
+    }*/
 }
 
-public interface IOneDemensionArray : IArray
+public interface IOneDemensionArray : IBaseArray
 {
     void GetendArray();
 }
 
-public sealed class OneDemensionArray : Array, IOneDemensionArray 
+public sealed class OneDemensionArray : BaseArray, IOneDemensionArray 
 {
-        private int[] massive;
+    private int[] array;
 
-        public OneDemensionMassive(int Len)
-        {
-            CreateMassive();
-        }
+    public OneDemensionArray(int Len)
+    {
+        CreateRandomArray();
+    }
 
-        public void CreateMassive(int Len)
+    public void CreateRandomArray(int Len)
+    {
+        Console.WriteLine("Введите длинну массива:");
+        array = new int[Len];
+        var random = new Random();
+        for (int i = 0; i < array.Length; i++)
         {
-            Console.WriteLine("Введите длинну массива:");
-            massive = new int[Len];
-            var random = new Random();
-            for (int i = 0; i < massive.Length; i++)
-            {
-                massive[i] = random.Next(-200, 200);
-            }
+            array[i] = random.Next(-200, 200);
         }
+    }
 
-        public override void CreateMassive()
+    public override void CreateRandomArray()
+    {
+        Console.WriteLine("Введите длинну массива:");
+        array = new int[int.Parse(Console.ReadLine())];
+        var random = new Random();
+        for (int i = 0; i < array.Length; i++)
         {
-            Console.WriteLine("Введите длинну массива:");
-            massive = new int[int.Parse(Console.ReadLine())];
-            var random = new Random();
-            for (int i = 0; i < massive.Length; i++)
-            {
-                massive[i] = random.Next(-200, 200);
-            }
+            array[i] = random.Next(-200, 200);
         }
+    }
 
-        public override void AverageValue()
+    public override void AverageValue()
+    {
+        int count = 0;
+        for (int i = 0; i < array.Length; ++i)
         {
-            int count = 0;
-            for (int i = 0; i < massive.Length; ++i)
-            {
-                count += massive[i];
-            }
-            Console.WriteLine("Average: " + count / massive.Length);
+            count += array[i];
         }
+        Console.WriteLine("Average: " + count / array.Length);
+    }
 
-        public override void Print()
-        {
-            Console.WriteLine("Array:");
-            Console.WriteLine(string.Join(" ", massive));
-        }
+    public override void Print()
+    {
+        Console.WriteLine("Array:");
+        Console.WriteLine(string.Join(" ", array));
+    }
         
-        public void Getendmass()
+    public void GetendArray()
+    {
+        int newmassLength = array.Length;
+        for (int i = 0; i < array.Length; i++)
         {
-        int newmassLength = mass.Length;
-        for (int i = 0; i < mass.Length; i++)
-        {
-            for (int j = i; j < mass.Length; j++)
+            for (int j = i; j < array.Length; j++)
             {
-                if (mass[i] == mass[j] && i != j)
+                if (array[i] == array[j] && i != j)
                 {
                     newmassLength--;
                     break;
@@ -111,17 +130,190 @@ public sealed class OneDemensionArray : Array, IOneDemensionArray
             newmass[i] = int.MinValue;
         }
         int counter = 0;
-        for (int i = 0; i < mass.Length; i++)
+        for (int i = 0; i < array.Length; i++)
         {
-            if (!Exist(mass[i], newmass))
+            if (!Exist(array[i], newmass))
             {
-                newmass[counter] = mass[i];
+                newmass[counter] = array[i];
                 counter++;
             }
         }
         foreach (var elem in newmass)
         {
             Console.Write(elem + " ");
+        }
+    }
+
+    private bool Exist(int elem, int[] array)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] == elem)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+public interface ITwoDemensionArray : IBaseArray
+{
+    void PrintMatricha();
+}
+
+public sealed class TwoDemensionArray : BaseArray, ITwoDemensionArray 
+{
+    private int[,] array;
+
+    public TwoDemensionArray(int Len1, int Len2)
+    {
+        CreateRandomArray();
+    }
+
+    public override void CreateRandomArray(int Len1, int Len2)
+    {
+        Console.WriteLine("Введите кол-во столбцов и срок в массиве:");
+        string[] a = Console.ReadLine().Split();
+        array = new int[Len1, Len2];
+        var random = new Random();
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                array[i, j] = random.Next(-200, 200);
+            }
+        }
+    }
+
+    public override void CreateRandomArray()
+    {
+        Console.WriteLine("Введите кол-во столбцов и срок в массиве:");
+        string[] a = Console.ReadLine().Split();
+        array = new int[int.Parse(a[0]), int.Parse(a[1])];
+        var random = new Random();
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                array[i, j] = random.Next(-200, 200);
+            }
+        }
+    }
+
+    public override void AverageValue()
+    {
+        int count = 0;
+        for (int i = 0; i < array.GetLength(0); ++i)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                count += array[i, j];
+            }
+        }
+        Console.WriteLine("Average: " + count / array.Length);
+    }
+
+    public override void Print()
+    {
+        Console.WriteLine("Array:");
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            Console.Write($"Row {i}: ");
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                Console.Write(array[i, j] + " ");
+            }
+            Console.WriteLine();
+        }
+    }
+
+    public void PrintMatricha()
+    {
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            if (i % 2 == 0)
+            {
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+                    Console.Write(array[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+            if (i % 2 != 0)
+            {
+                for (int j = array.GetLength(1) - 1; j >= 0; j--)
+                {
+                    Console.Write(array[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
+public interface IJaggedArray : IBaseArray
+{
+    void IzmenArray();
+}
+
+public sealed class JaggedArray : BaseArray, IJaggedArray 
+{
+    private int[][] array;
+
+    public JaggedArray()
+    {
+        CreateArray();
+    }
+
+    public override void CreateRandomArray()
+    {
+        Console.WriteLine("Введите кол-во строк в массиве:");
+        array = new int[int.Parse(Console.ReadLine())][];
+        var random = new Random();
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            Console.WriteLine("Введите длину строки:");
+            array[i] = new int[int.Parse(Console.ReadLine())];
+            for (int j = 0; j < array[i].Length; j++)
+            {
+                array[i][j] = random.Next(-200, 200);
+            }
+        }
+    }
+
+    public override void AverageValue()
+    {
+        int count = 0;
+        for (int i = 0; i < array.Length; i++)
+        {
+            for (int j = 0; j < array[i].Length; j++)
+            {
+                count += array[i][j];
+            }
+        }
+        Console.WriteLine("Average: " + count / array.Length);
+    }
+
+    public override void Print()
+    {
+        Console.WriteLine("Array:");
+        for (int i = 0; i < arraye.Length; i++)
+        {
+            Console.Write($"Row {i}: ");
+            Console.WriteLine(string.Join(" ", array[i]));
+        }
+    }
+    
+    public void IzmenArray()
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            for (int j = 0; j < array[i].Length; j++)
+            {
+                if (array[i][j] % 2 == 0)
+                {
+                    array[i][j] = i * j;
+                }
+            }
         }
     }
 }
