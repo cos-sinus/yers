@@ -9,9 +9,25 @@ namespace HW3_2
     public sealed class JaggedMassive : Massive
     {
         private int[][] massive;
-        public JaggedMassive()
+        public JaggedMassive(int Leng)
         {
             CreateMassive();
+        }
+
+        public void CreateMassive(int Leng)
+        {
+            Console.WriteLine("Введите кол-во строк в массиве:");
+            massive = new int[Leng][];
+            var random = new Random();
+            for (int i = 0; i < massive.GetLength(0); i++)
+            {
+                Console.WriteLine("Введите длину строки:");
+                massive[i] = new int[int.Parse(Console.ReadLine())];
+                for (int j = 0; j < massive[i].Length; j++)
+                {
+                    massive[i][j] = random.Next(-200, 200);
+                }
+            }
         }
         public override void CreateMassive()
         {
