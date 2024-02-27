@@ -8,7 +8,9 @@ namespace HW3_3
 {
     internal interface IBaseArray : IPrinter
     {
-        void CreateRandomArray();
+        void ArrayByUser();
+
+        void RandomArray();
 
         void AverageValue();
 
@@ -16,7 +18,9 @@ namespace HW3_3
     }
     abstract class BaseArray : IBaseArray
     {
-        public abstract void CreateRandomArray();
+        public abstract void ArrayByUser();
+
+        public abstract void RandomArray();
 
         public abstract void AverageValue();
 

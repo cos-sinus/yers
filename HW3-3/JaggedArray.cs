@@ -14,27 +14,34 @@ namespace HW3_3
     {
         private int[][] array;
 
-        public JaggedArray(int Len1)
+        public JaggedArray(bool choise = false)
         {
-            CreateRandomArray();
+            if (choise)
+            {
+                ArrayByUser();
+            }
+            else
+            {
+                RandomArray();
+            }
         }
 
-        public void CreateRandomArray(int Len1)
+        public override void ArrayByUser()
         {
             Console.WriteLine("Введите кол-во строк в массиве:");
-            array = new int[Len1][];
-            var random = new Random();
-            for (int i = 0; i < array.GetLength(0); i++)
+            array = new int[int.Parse(Console.ReadLine())][];
+            for (int i = 0; i < array.Length; i++)
             {
-                Console.WriteLine("Введите длину строки:");
                 array[i] = new int[int.Parse(Console.ReadLine())];
                 for (int j = 0; j < array[i].Length; j++)
                 {
-                    array[i][j] = random.Next(-200, 200);
+                    Console.WriteLine("Введите строку:");
+                    Console.Write($"Elem [{i},{j}]: ");
+                    array[i][j] = int.Parse(Console.ReadLine());
                 }
             }
         }
-        public override void CreateRandomArray()
+        public override void RandomArray()
         {
             Console.WriteLine("Введите кол-во строк в массиве:");
             array = new int[int.Parse(Console.ReadLine())][];

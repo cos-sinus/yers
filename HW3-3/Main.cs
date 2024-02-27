@@ -12,11 +12,15 @@ namespace HW3_3
     {
         static void Main()
         {
+            Console.WriteLine("False - рандомное заполнение, true - заполнение с клавиатуры");
+
+            bool choise = bool.Parse(Console.ReadLine());
+
             BaseArray[] array = new BaseArray[3]
             {
-            new OneDemensionArray(3),
-            new TwoDemenshionArray(2, 3),
-            new JaggedArray(3)
+            new OneDimenshionArray(choise),
+            new TwoDemenshionArray(choise),
+            new JaggedArray(choise)
             };
 
             foreach (var a in array)

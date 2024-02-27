@@ -14,27 +14,35 @@ namespace HW3_3
     {
         private int[,] array;
 
-        public TwoDemenshionArray(int Len1, int Len2)
+        public TwoDemenshionArray(bool choise = false)
         {
-            CreateRandomArray();
+            if (choise)
+            {
+                ArrayByUser();
+            }
+            else
+            {
+                RandomArray();
+            }
         }
 
-        public void CreateRandomArray(int Len1, int Len2)
+        public override void ArrayByUser()
         {
             Console.WriteLine("Введите кол-во столбцов и срок в массиве:");
             string[] a = Console.ReadLine().Split();
-            array = new int[Len1, Len2];
-            var random = new Random();
+            array = new int[int.Parse(a[0]), int.Parse(a[1])];
             for (int i = 0; i < array.GetLength(0); i++)
             {
+                Console.WriteLine("Введите элементы строки");
+                string[] strs = Console.ReadLine().Split();
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    array[i, j] = random.Next(-200, 200);
+                    array[i, j] = int.Parse(strs[j]);
                 }
             }
         }
 
-        public override void CreateRandomArray()
+        public override void RandomArray()
         {
             Console.WriteLine("Введите кол-во столбцов и срок в массиве:");
             string[] a = Console.ReadLine().Split();
@@ -80,22 +88,20 @@ namespace HW3_3
         {
             for (int i = 0; i < array.GetLength(0); i++)
             {
-                if (i % 2 == 0)
+                int Index = 0;
+                for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    for (int j = 0; j < array.GetLength(1); j++)
+                    if (i % 2 == 0)
                     {
-                        Console.Write(array[i, j] + " ");
+                        Index = j;
                     }
-                    Console.WriteLine();
-                }
-                if (i % 2 != 0)
-                {
-                    for (int j = array.GetLength(1) - 1; j >= 0; j--)
+                    else
                     {
-                        Console.Write(array[i, j] + " ");
+                        Index = array.GetLength(1) - 1 - j;
                     }
-                    Console.WriteLine();
+                    Console.Write(array[i, Index] + " ");
                 }
+                Console.WriteLine();
             }
         }
     }
