@@ -14,9 +14,15 @@ namespace HW3_3
     {
         private int[][] array;
 
-        public JaggedArray(bool choise = false)
+        public JaggedArray(bool choice = false)
+            : base(choice)
         {
-            if (choise)
+            
+        }
+
+        public override void ReCreate(bool choice)
+        {
+            if (choice)
             {
                 ArrayByUser();
             }

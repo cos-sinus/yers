@@ -14,9 +14,15 @@ namespace HW3_3
     {
         private int[,] array;
 
-        public TwoDemenshionArray(bool choise = false)
+        public TwoDemenshionArray(bool choice = false)
+            : base(choice)
         {
-            if (choise)
+            
+        }
+
+        public override void ReCreate(bool choice)
+        {
+            if (choice)
             {
                 ArrayByUser();
             }
@@ -25,6 +31,7 @@ namespace HW3_3
                 RandomArray();
             }
         }
+
 
         public override void ArrayByUser()
         {

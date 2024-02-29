@@ -11,7 +11,9 @@ namespace HW3_3
     {
         public void Print()
         {
-            Console.WriteLine("Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday");
+            string[] Days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Suturday", "Sunday"};
+            Console.WriteLine("Days:");
+            Console.WriteLine(string.Join(" ", Days));
         }
     }
 }

@@ -16,9 +16,15 @@ namespace HW3_3
 
         private int[] array;
 
-        public OneDimenshionArray(bool choise = false)
+        public OneDimenshionArray(bool choice = false)
+            : base(choice)
         {
-            if (choise)
+            
+        }
+
+        public override void ReCreate(bool choice)
+        {
+            if (choice)
             {
                 ArrayByUser();
             }

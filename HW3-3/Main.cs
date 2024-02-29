@@ -14,27 +14,34 @@ namespace HW3_3
         {
             Console.WriteLine("False - рандомное заполнение, true - заполнение с клавиатуры");
 
-            bool choise = bool.Parse(Console.ReadLine());
+            bool choice = bool.Parse(Console.ReadLine());
 
-            BaseArray[] array = new BaseArray[3]
+            BaseArray[] array =
             {
-            new OneDimenshionArray(choise),
-            new TwoDemenshionArray(choise),
-            new JaggedArray(choise)
+            new OneDimenshionArray(choice),
+            new TwoDemenshionArray(choice),
+            new JaggedArray(choice)
             };
 
-            foreach (var a in array)
+            for (int i = 1; i < 4; i++)
             {
-                a.Print();
-                a.AverageValue();
+                Console.WriteLine("Massive " + i.ToString() + ":");
+                array[i - 1].Print();
+                array[i - 1].AverageValue();
+
+                Console.WriteLine("Massive " + i.ToString() + ".1:");
+                array[i - 1].ReCreate(choice);
+                array[i - 1].Print();
+                array[i - 1].AverageValue();
             }
 
-            IPrinter[] print = new IPrinter[4];
-
-            print[0] = array[0];
-            print[1] = array[1];
-            print[2] = array[2];
-            print[3] = new Printer();
+            IPrinter[] print =
+            {
+            array[0],
+            array[1],
+            array[2],
+            new Printer(),
+            };
 
             foreach (var item in print)
             {
