@@ -8,17 +8,7 @@ namespace HW3_3
 {
     internal interface IBaseArray : IPrinter
     {
-        void ReCreate(bool choice)
-        {
-            if (choice)
-            {
-                ArrayByUser();
-            }
-            else
-            {
-                RandomArray();
-            }
-        }
+        void ReCreate(bool choice);
 
         void ArrayByUser();
 
@@ -36,7 +26,14 @@ namespace HW3_3
         }
         public virtual void ReCreate(bool choice)
         {
-
+            if (choice)
+            {
+                ArrayByUser();
+            }
+            else
+            {
+                RandomArray();
+            }
         }
 
         public abstract void ArrayByUser();
