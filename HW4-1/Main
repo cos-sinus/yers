@@ -1,0 +1,33 @@
+using HW3_4;
+using System;
+
+namespace HW3_3
+{
+    class Program
+    {
+        static void Main()
+        {
+            delegate void CreateNormArr();
+            delegate void CreateArr();
+            delegate void AddElem();
+            delegate void DelElem();
+            delegate void SortArr();
+            delegate void CountElem();
+            delegate void CountSomeElem();
+            delegate void IfElem();
+            delegate void IfAllElems();
+            delegate void IsElem();
+            delegate void FirstIfElem()
+            delegate void ActionOnArr();
+            delegate void NumsActionOnArr();
+            delegate void TNumsOfArr();
+            delegate void Rra();
+            delegate void MinMaxElem();
+        }
+    }
+
+    class OneDimenshionalArr
+    {
+        
+    }
+}
