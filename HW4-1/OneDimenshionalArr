@@ -1,0 +1,215 @@
+using HW3_4;
+using System;
+
+namespace HW3_3
+{    
+    public class OneDimenshionalArr<T>
+    {
+        public T[] arr;
+        private int _size;
+        private int _capacity;
+        private Random rnd = new random();
+
+        public OneDimenshionalArr(int capacity)
+        {
+            _capacity = capacity;
+            T arr = new T[_capacity];
+            size = 0;
+        }
+
+        public OneDimenshionalArr() : this(7)
+        {
+        }
+
+        public void AddElem(T elem)
+        {
+            if(_size >= _capacity)
+            {
+                _capacity = 2*_capacity + 1;
+                T[] array = new T[_capacity];
+                Array.Copy(arr, array, _size);
+                arr = array;
+            }
+            arr[_size] = elem;
+            _size++;
+        }
+
+        public void Print()
+        {
+            Console.WriteLine("Array:");
+            for (int i = 0; i < _size; i++)
+            {
+                Console.WriteLine(arr[i] + " ");
+            }
+            Console.WriteLine(" ");
+        }
+
+        public void DelElem(T index)
+        {
+            if (index <= _size)
+            {
+                T[] array = new T[_capacity];
+                for(int i = 0; i < _size; i++)
+                {
+                    if(i != index)
+                    {
+                        array[i] = arr[i];
+                    }
+                }
+                _size--;
+                arr = array;
+            }
+            else
+            {
+                Console.WriteLine("Index is out of range!");
+            }
+        }
+
+        public void SortArr()
+        {
+            Array.Sort(arr, 0, _size);
+        }
+
+        public int CountElem()
+        {
+            return _size;
+        }
+
+        public int CountSomeElem(Func<T, bool> action)
+        {
+            int counter = 0;
+            for (int i = 0; i < _size; i++)
+            {
+                if(action(arr[i]))
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
+
+        public bool IfElem(Func<T, bool> action)
+        {
+            for (int i = 0; i < _size; i++)
+            {
+                if(action(arr[i]))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool IfAllElems(Func<T, bool> action)
+        {
+            for (int i = 0; i < _size; i++)
+            {
+                if(!action(arr[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool IsElem(T elem)
+        {
+            for (int i = 0; i < _size; i++)
+            {
+                if (arr[i] == elem)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public int FirstIfElem(Func<t, bool> action)
+        {
+            for (int i = 0; i < _size; i++)
+            {
+                if(action(arr[i]))
+                {
+                    return i;
+                    break;
+                }
+            }
+        }
+
+        public void ActionOnArr(Func<T, bool> action)
+        {
+            for (int i = 0; i < _size; i++)
+            {
+                action(arr[i])
+            }
+        }
+
+        public void ElemsActionOnArr(Func<T, bool> action)
+        {
+            for (int i = 0; i < _size; i++)
+            {
+                if(action(arr[i]))
+                {
+                    Console.WriteLine(arr[i]);
+                }
+            }
+        }
+
+        public void Rra()
+        {
+            Array.Reverse(a, 0, _size);
+        }
+
+        public void MinMaxElem()
+        {
+            if (T == "int")
+            {
+                int min = arr.Min(0, _size);
+                int max = arr.Max(0, _size);
+            }
+            else if (T == "decimal")
+            {
+                decimal min = arr.Min(0, _size);
+                decimal max = arr.Max(0, _size);
+            }
+            Console.WriteLine("Minimum: " + min);
+            Console.WriteLine("Maximum: " + max);
+        }
+
+        public void MinMaxElemByProection(Func<T, bool> action)
+        {
+            for (int i = 0; i < _size; i++)
+            {
+                action(arr[i]);
+            }
+            int min = arr.Min(0, _size);
+            int max = arr.Max(0, _size);
+            Console.WriteLine("Minimum: " + min);
+            Console.WriteLine("Maximum: " + max);
+        }
+
+        public void ProjElemToNewType(Func<T, bool> action)
+        {
+            for (int i = 0; i < _size; i++)
+            {
+                Console.WriteLine(action(arr[i]), + ", ");
+            }
+        }
+
+        public void GiveDiaposoneElems(int numofelems, int index)
+        {
+            for (int i = index; i < index + numofelems; i++)
+            {
+                Console.WriteLine(arr[i]);
+            }
+        }
+
+        public void Iteration()
+        {
+            foreach (var elem in arr)
+            {
+                Console.Write(elem + " ");
+            }
+        }
+    }
+}

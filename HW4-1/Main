@@ -7,66 +7,7 @@ namespace HW3_3
     {
         static void Main()
         {
-            delegate void CreateNormArr();
-            delegate void CreateArr();
-            delegate void AddElem();
-            delegate void DelElem();
-            delegate void SortArr();
-            delegate void CountElem();
-            delegate void CountSomeElem();
-            delegate void IfElem();
-            delegate void IfAllElems();
-            delegate void IsElem();
-            delegate void FirstIfElem()
-            delegate void ActionOnArr();
-            delegate void NumsActionOnArr();
-            delegate void TNumsOfArr();
-            delegate void Rra();
-            delegate void MinMaxElem();
+            
         }
-    }
-
-    public class OneDimenshionalArr<T>
-    {
-        public T[] arr;
-        private int _size;
-        private int _capacity;
-        private Random rnd = new random();
-
-        public OneDimenshionalArr(int capacity)
-        {
-            _capacity = capacity;
-            T arr = new T[_capacity];
-            size = 0;
-        }
-
-        public OneDimenshionalArr() : this(7)
-        {
-        }
-
-        public void AddElem(T elem)
-        {
-            if(_size >= _capacity)
-            {
-                _capacity = 2*_capacity + 1;
-                T[] array = new T[_capacity];
-                Array.Copy(arr, array, _size);
-                arr = array;
-            }
-            arr[_size] = elem;
-            _size++;
-        }
-
-        public void Print()
-        {
-            Console.WriteLine("Array:");
-            for (int i = 0; i < _size; i++)
-            {
-                Console.WriteLine(arr[i] + " ");
-            }
-            Console.WriteLine(" ");
-        }
-
-        pu
     }
 }
