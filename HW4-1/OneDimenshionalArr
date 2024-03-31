@@ -190,17 +190,14 @@ namespace HW3_3
 
         public void ProjElemToNewType(Func<T, bool> action)
         {
-            for (int i = 0; i < _size; i++)
-            {
-                Console.WriteLine(action(arr[i]), + ", ");
-            }
+            array.Select(action);
         }
 
         public void GiveDiaposoneElems(int numofelems, int index)
         {
             for (int i = index; i < index + numofelems; i++)
             {
-                Console.WriteLine(arr[i]);
+                Console.WriteLine(arr[i], + " ");
             }
         }
 
