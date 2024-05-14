@@ -1,0 +1,82 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="550"
+        x:Class="GetStartedApp.MainWindow"
+        Title="GetStartedApp"
+        CanResize = "False">
+
+    <Window.Styles>
+    <Style Selector="TextBlock">
+      <Setter Property="Margin" Value="5"></Setter>
+      <Setter Property="Foreground" Value="Black"></Setter>
+      <Setter Property="FontWeight" Value="Medium"></Setter>
+    </Style>
+    <Style Selector="DockPanel TextBlock">
+      <Setter Property="Margin" Value="25"></Setter>
+    </Style>
+    <Style Selector="ScrollViewer StackPanel">
+      <Setter Property="Margin" Value="12"></Setter>
+    </Style>
+    <Style Selector="Image">
+      <Setter Property="Margin" Value="25"></Setter>
+    </Style>
+    <Style Selector="ScrollViewer TextBlock:pointerover">
+      <Setter Property="Foreground" Value="Blue"></Setter>
+    </Style>
+    </Window.Styles>
+
+   <Grid ShowGridLines = "True"
+        RowDefinitions = "auto, auto, auto"
+        ColumnDefinitions = "* , *"
+        Background = "White">
+    
+    <DockPanel Grid.Row = "0"
+                Grid.Column = "0"
+                Grid.ColumnSpan = "2"
+                Background = "White">
+        <TextBlock>Home</TextBlock>
+        <TextBlock>About</TextBlock>
+        <TextBlock>Blog's Main Topic 1</TextBlock>
+        <TextBlock>Blog's Main Topic 2</TextBlock>
+        <TextBlock>Blog's Main Topic 3</TextBlock>
+        <TextBlock>Associated blogs</TextBlock>
+        <TextBlock DockPanel.Dock = "Right" TextAlignment = "Right">RSS</TextBlock>
+    </DockPanel>
+
+    <StackPanel Grid.Row = "1"
+                Grid.Column = "0"
+                Orientation = "Vertical"
+                Background = "White">
+        <TextBlock>Article 1</TextBlock>
+        <TextBlock TextWrapping = "Wrap"
+                Margin = "0, 0, 20, 15"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vestibulum cursus arcu, ac auctor mauris laoreet et. In mauris dolor, tincidunt eget fermentum non, maximus at massa. Nullam sed ultrices augue, sit amet egestas purus. Aliquam quis ornare nulla, eu laoreet mi. Vivamus vitae fermentum ipsum, et commodo erat. Vestibulum semper elementum est id sodales. Suspendisse blandit tempus dui non ullamcorper. Phasellus leo eros, sodales eget congue id, tincidunt dapibus turpis. Cras ac leo at massa dictum pellentesque id vitae felis. Duis et ornare turpis, ac luctus mi. In dapibus quam sit amet hendrerit malesuada. Ut eu ante purus. Vestibulum porttitor justo suscipit lorem malesuada tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;</TextBlock>
+        <Image Source="resm:Avalonia.Skia.Assets.NoiseAsset_256X256_PNG.png?assembly=Avalonia.Skia"
+                Height="200"
+                Width="400"
+                Stretch="Uniform"
+                HorizontalAlignment="Center"></Image>
+    </StackPanel>
+
+    <StackPanel Grid.Row = "1"
+                Grid.Column = "1"
+                Orientation = "Vertical"
+                Background = "White">
+        <TextBlock TextWrapping = "Wrap"> In eros ipsum, sagittis id quam sed, suscipit pretium mauris. Ut et scelerisque felis. Mauris congue pharetra tortor vitae posuere. Donec erat ante, maximus quis aliquam non, molestie id risus. Donec ornare aliquam mauris, eu tempor nisl euismod vel. Phasellus condimentum posuere nibh at tempus. Etiam a auctor urna. Proin quis ipsum at leo facilisis sollicitudin id et lacus. Proin eu dui luctus, euismod ligula vel, lobortis dui. Quisque vel sem odio. Sed vitae est commodo, mollis tellus eu, accumsan magna.</TextBlock>
+        <TextBlock DockPanel.Dock = "Right" TextAlignment>M͟o͟r͟e͟</TextBlock>
+        <TextBlock TextWrapping = "Wrap"> In eros ipsum, sagittis id quam sed, suscipit pretium mauris. Ut et scelerisque felis. Mauris congue pharetra tortor vitae posuere. Donec erat ante, maximus quis aliquam non, molestie id risus. Donec ornare aliquam mauris, eu tempor nisl euismod vel. Phasellus condimentum posuere nibh at tempus. Etiam a auctor urna. Proin quis ipsum at leo facilisis sollicitudin id et lacus. Proin eu dui luctus, euismod ligula vel, lobortis dui. Quisque vel sem odio. Sed vitae est commodo, mollis tellus eu, accumsan magna.</TextBlock>
+        <TextBlock DockPanel.Dock = "Right" TextAlignment>M͟o͟r͟e͟</TextBlock>
+        <TextBlock DockPanel.Dock = "Right" TextAlignment>1 week ago</TextBlock>
+    </StackPanel>
+
+    <DockPanel  Grid.Row = "2"
+                Grid.Column = "0"
+                Background = "White">
+        <TextBlock>Tag1</TextBlock>
+        <TextBlock>Tag2</TextBlock>
+        <TextBlock>Tag3</TextBlock>
+        <TextBlock>Tag4</TextBlock>
+    </DockPanel>
+    </Grid>
+</Window>
