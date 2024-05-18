@@ -1,0 +1,93 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:HW4_4.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="HW4_4.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="HW4_4">
+
+    <Window.Styles>
+        <Style Selector="TextBlock">
+            <Setter Property="Margin" Value="15"></Setter>
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Setter Property="FontWeight" Value="Medium"></Setter>
+        </Style>
+    </Window.Styles>
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid ColumnDefinitions="*,auto"
+            RowDefinitions="auto,auto">
+        <StackPanel Background = "white"
+                    HorizontalAlignment = "Stretch"
+                    Grid.Row="0"
+                    Grid.ColumnSpan = "3">
+				<TextBlock Text="{Binding MainMenuEntity.Home}"/>
+				<TextBlock Text="Binding MainMenuEntity.About}"/>
+                <ItemsControl ItemsSource="{Binding MainMenuEntity.MainTopicsList}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                </ItemsControl>	
+                <TextBlock Text="Binding MainMenuEntity.AssoshiatedBlogs}"/>			
+				<TextBlock TextAlignment = "Right" Text="{Binding MainMenuEntity.Profile}"/>
+        </StackPanel>
+
+        <ListBox Grid.Row="1" 
+                Grid.Column="0" 
+                Background="blue" 
+                ItemsSource="{Binding BlogsEntities}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>	
+                        <StackPanel>
+                            <TextBlock Text="{Binding Article}"/>
+                            <TextBlock Text="{Binding Text}"/>
+                            <Image Source="{Binding ImagePath, Converter={x:Static infrastructure:BitmapValueConverter.Instance}}"
+                                    Height="100" />
+        
+                            <ItemsControl ItemsSource="{Binding Tags}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                            
+                        </StackPanel>
+                    
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <ListBox Grid.Row="1" 
+                Grid.Column="1" 
+                Background="red" 
+                ItemsSource="{Binding NewsEntities}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Text}"/>
+                            <TextBlock Text="{Binding PublishTime}"/>
+                        </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <DockPanel  Grid.Row = "2"
+                Grid.Column = "0"
+                Background = "White">
+        <TextBlock>Tag1</TextBlock>
+        <TextBlock>Tag2</TextBlock>
+        <TextBlock>Tag3</TextBlock>
+        <TextBlock>Tag4</TextBlock>
+        </DockPanel>
+
+    </Grid>
+</Window>
